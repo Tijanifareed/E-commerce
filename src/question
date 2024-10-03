@@ -1,0 +1,35 @@
+1. Function 1: Check Inventory
+○ Scenario: When a customer tries to place an order, the system needs to check if
+the requested items are in stock.
+○ Objective: Write a function that accepts an itemId and the quantity the
+customer wants to purchase. The function should check if the stock level for that
+item is sufficient and return either true (enough stock) or false (not enough
+stock).
+○
+2. Function 2: Create Order
+○ Scenario: Once inventory is confirmed, the system should create a new order for
+the customer.
+○ Objective: Write a function that accepts a customerId and an array of items
+(each containing an itemId and quantity). The function should validate if all
+items are in stock (using the checkInventory function). If successful, it should
+return an order object (with a unique order ID, customer ID, and list of ordered
+items), otherwise return an error message.
+○
+Example Output:
+{
+orderId: 'ORD123',
+customerId: 45,
+items: [
+{ itemId: 1, quantity: 2 },
+{ itemId: 3, quantity: 1 }
+]
+}
+○
+3. Function 3: Update Stock
+○ Scenario: After a successful order, the system needs to update the stock of each
+item.
+○ Function Name: updateStock(items)
+○ Objective: Write a function that takes an array of items (each containing an
+itemId and quantity) and updates the inventory by reducing the stock level
+for each item accordingly. If an item goes out of stock (i.e., the stock becomes 0),
+it should log a message: "Item [itemId] is out of stock."
