@@ -7,6 +7,16 @@ import {ItemRepository} from 'src/repositories/items.repository'
 export class ItemService{
      constructor(
           @InjectRepository(Item)
-          private itemsRepository: ItemRepository,
+          private readonly itemsRepository: ItemRepository,
      ){}
+
+     async checkInventory(itemId: number, quantity: number): Promise<boolean>{
+          const item = await this.itemsRepository.findOne({where: {id: itemId}});
+          if(!item || item.stock < quantity){
+               return false;
+          }
+          return true
+     }
+
+     
 }
