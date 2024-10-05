@@ -28,6 +28,7 @@ export class OrderService {
          const order = {orderId, customerId,items}
 
          await this.orderRepository.save(order)
+         await this.itemService.updateInventory(items);
          return order;
      }
 }

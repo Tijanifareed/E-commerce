@@ -18,6 +18,16 @@ export class ItemService{
           return true
      }
 
-
+     async updateInventory(items:{ itemId: number; quantity: number }[]){
+          const itemIds = items.map(item => item.itemId);
+          const itemQuantitys = items.map(item => item.quantity);
+          for(const itemId of itemIds){
+               for(const itemQuantity of itemQuantitys){
+                    const item = await this.itemsRepository.findOne({where: {id: itemId}});
+                    item.stock = item.stock - itemQuantity 
+                    await this.itemsRepository.save(item);
+               }
+          }
+     }
 }
 export default ItemService;
