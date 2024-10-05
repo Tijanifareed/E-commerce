@@ -5,8 +5,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Item } from './entites/items.entity';
 import {ItemRepository} from './repositories/items.repository';
 import {Order} from './entites/order.entity'
-
+import { ItemService } from './services/item.service'; 
+import { OrderService } from './services/order.service';
+import { OrderRepository } from './repositories/order.repository';
+import { OrderController } from './controllers/order.controller';
 @Module({
+
   imports: [
     TypeOrmModule.forRoot(
       {
@@ -18,13 +22,13 @@ import {Order} from './entites/order.entity'
       database: 'store',
       entities: [Item, Order],
       synchronize: true,
-      logging: true,
+      // logging: true,
       }
     ),
-    TypeOrmModule.forFeature([Item, Order]),
+    TypeOrmModule.forFeature([Item, Order, ItemRepository, OrderRepository]),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [OrderController],
+  providers: [ItemService, OrderService], // Register your services
   
 })
 export class AppModule {}

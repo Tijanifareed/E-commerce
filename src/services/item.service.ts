@@ -18,5 +18,6 @@ export class ItemService{
           return true
      }
 
-     
+
 }
+export default ItemService;
